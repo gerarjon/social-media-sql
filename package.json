@@ -1,0 +1,29 @@
+{
+  "name": "social-media-sql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gerarjon/social-media-sql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gerarjon/social-media-sql/issues"
+  },
+  "homepage": "https://github.com/gerarjon/social-media-sql#readme",
+  "dependencies": {
+    "concurrently": "^7.2.2",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "mysql2": "^2.3.3",
+    "nodemon": "^2.0.18",
+    "sequelize": "^6.21.2",
+    "sequelize-cli": "^6.4.1"
+  }
+}
