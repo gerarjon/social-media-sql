@@ -49,7 +49,7 @@
 
 .postPage__container {
   margin: 0 auto;
-  width: 800px;
+  max-width: 800px;
   margin-top: 10vh;
 }
 
