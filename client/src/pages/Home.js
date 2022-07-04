@@ -32,6 +32,8 @@ const Home = () => {
                 title={post.title}
                 body={post.body}
                 navigate={navigate}
+                setPosts={setPosts}
+                posts={posts}
               />
             )
           })

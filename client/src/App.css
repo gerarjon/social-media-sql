@@ -12,12 +12,22 @@
   border: 1px solid rgb(210, 210, 210);
   border-radius: 2px;
   padding: 2px 10px;
+  display: flex;
+  justify-content: space-between;
   background-color: #FFF;
   cursor: pointer;
 }
 
+.post__content > .content {
+  flex-grow: 1;
+}
+
 .post__title h1, h2, h3, h4, h5, h6 {
   margin: 0.5em 0!important;
+}
+
+.delete__container {
+  padding-top: 5px;
 }
 
 /* create post */
