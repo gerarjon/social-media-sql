@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Comment = (props) => {
+const Comment = ({commentBody}) => {
   return (
     <article className='comment__container media'>
       <figure className='media-left'>
@@ -10,11 +10,9 @@ const Comment = (props) => {
       </figure>
       <div className='comment__content media-content' >
         <div className='content'>
-          <div className='comment__username'>
-            <strong>username</strong>
-          </div>
+         
           <div className='comment__body'>
-            <p>text</p>
+            <p>{commentBody}</p>
           </div>
         </div>
       </div>

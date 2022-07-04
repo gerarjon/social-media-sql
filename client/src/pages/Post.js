@@ -2,15 +2,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Comment from '../modules/Comment';
+import CreateComment from '../modules/CreateComment';
 
 
 const Post = () => {
   const [postData, setPostData] = useState({})
+  const [comments, setComments] = useState([])
   let { id } = useParams();
 
   useEffect(() => {
     axios.get(`http://localhost:3001/api/posts/byId/${id}`).then((res) => {
 			setPostData(res.data)
+    })
+    axios.get(`http://localhost:3001/api/comments/${id}`).then((res) => {
+			setComments(res.data)
     })
   },[])
 
@@ -38,7 +43,20 @@ const Post = () => {
           </div>
 
           <div className='comments__container'>
-            <Comment />
+            <CreateComment 
+              id={id}
+              setComments={setComments}
+            />
+
+            {comments.map((comment,key) => {
+              return (
+                <Comment 
+                  id={comment.id}
+                  commentBody={comment.commentBody}
+                  key={key}
+                />
+              )
+            })}
           </div>
         </div>
       </article>
