@@ -10,7 +10,8 @@ module.exports = (sequelize, DataTypes) => {
     Comments.belongsTo(models.Posts, {
       foreignKey: {
         allowNull: false
-      }
+      },
+      onDelete: 'cascade'
     })
   }
 
