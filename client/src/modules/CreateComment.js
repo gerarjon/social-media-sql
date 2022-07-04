@@ -15,7 +15,7 @@ const CreateComment = ({setComments, id}) => {
   const onSubmit = (data, { resetForm }) => {
     const comment = {...data, PostId: id}
     axios
-      .post("http://localhost:3001/api/comments", comment)
+      .post("/api/comments", comment)
       .then((res) => {
 			  setComments((prevState) => [comment, ...prevState])
         resetForm();

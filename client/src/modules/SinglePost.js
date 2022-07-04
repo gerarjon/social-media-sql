@@ -12,7 +12,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
 
   const onDelete = () => {
     axios
-      .delete(`http://localhost:3001/api/posts/delete/${idDelete}`)
+      .delete(`/api/posts/delete/${idDelete}`)
       .then((res) => {
         setPosts(posts.filter((post) => post.id !== idDelete))
         setIdDelete(null)

@@ -11,10 +11,10 @@ const Post = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    axios.get(`http://localhost:3001/api/posts/byId/${id}`).then((res) => {
+    axios.get(`/api/posts/byId/${id}`).then((res) => {
 			setPostData(res.data)
     })
-    axios.get(`http://localhost:3001/api/comments/${id}`).then((res) => {
+    axios.get(`/api/comments/${id}`).then((res) => {
 			setComments(res.data)
     })
   },[])

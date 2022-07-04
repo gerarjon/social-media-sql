@@ -19,7 +19,7 @@ const CreatePost = ({setPosts}) => {
   })
 
   const onSubmit = (data, { resetForm }) => {
-    axios.post("http://localhost:3001/api/posts", data).then((res) => {
+    axios.post("/api/posts", data).then((res) => {
 			setPosts((prevState) => [data, ...prevState])
       resetForm();
     })

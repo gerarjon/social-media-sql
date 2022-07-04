@@ -11,7 +11,7 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:3001/api/posts").then((res) => {
+    axios.get(`/api/posts`).then((res) => {
 			setPosts(res.data);
     })
   },[])
