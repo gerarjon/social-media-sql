@@ -15,3 +15,65 @@
   background-color: #FFF;
   cursor: pointer;
 }
+
+.post__title h1, h2, h3, h4, h5, h6 {
+  margin: 0.5em 0!important;
+}
+
+/* create post */
+
+.createPost__content {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 2px;
+  padding: 10px 10px;
+  background-color: #FFF;
+}
+
+.createPost__form__container {
+  display: flex;
+  flex-direction: column;
+}
+
+.createPost__form__container > input {
+  margin-bottom: 10px;
+  padding: 5px 2px;
+}
+
+.form__footer {
+  border-top: 1px solid rgb(232, 232, 232);
+  margin-top: 5px;
+  padding-top: 15px;
+}
+
+/* post page */
+
+.postPage__container {
+  margin: 0 auto;
+  width: 800px;
+  margin-top: 10vh;
+}
+
+.postPage__content {
+  border: 1px solid rgb(210, 210, 210);
+  border-radius: 2px;
+  padding: 2px 10px;
+  background-color: #FFF;
+}
+
+.postPage__header {
+  margin-top: 5px;
+  display: flex;
+}
+
+.postPage__header > figure {
+  margin-left: 0!important;
+  margin-bottom: 1rem!important;
+}
+
+.postPage__body {
+  font-size: 1.2rem;
+}
+
+.comment__content {
+  padding: 2px 10px;
+}
