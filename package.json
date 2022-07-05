@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/gerarjon/social-media-sql/issues"
   },
-  "homepage": "https://github.com/gerarjon/social-media-sql#readme",
+  "homepage": "https://social-media-sql-gs.herokuapp.com/",
   "dependencies": {
     "concurrently": "^7.2.2",
     "cors": "^2.8.5",

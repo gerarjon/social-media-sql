@@ -3,6 +3,7 @@ const app = express();
 const cors = require('cors')
 const router = express.Router();
 const PORT = process.env.PORT || 3001;
+const path = require('path');
 
 app.use(cors());
 app.use(express.urlencoded({
@@ -26,6 +27,7 @@ app.get("*", (req, res) => {
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
 
 db.sequelize.sync().then(()=>{
   app.listen(PORT, () => {
