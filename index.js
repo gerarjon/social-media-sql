@@ -19,15 +19,7 @@ app.use(routes);
 const db = require('./models');
 
 // Default behavior: send every unmatched route request to the React app (in production)
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "client", "build", "index.html"));
-});
-
-// Serve up static assets 
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
-
+app.use(express.static(path.join(__dirname, './client/build')));
 
 db.sequelize.sync().then(()=>{
   app.listen(PORT, () => {
