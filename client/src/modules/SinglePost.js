@@ -2,9 +2,10 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import API from '../utils/API';
 
-const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
+const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date}) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
+  const newDate = new Date(date).toDateString()
 
   const onDeleteModalHandler = (id) => {
     setDeleteModalActive(!deleteModalActive)
@@ -22,6 +23,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
    }
   }
 
+
   return (
     <>
       <article className='post__container media' id={id}>
@@ -34,7 +36,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
         <div className='post__content media-content'>
           <div className='content' onClick={()=>{navigate(`/post/${id}`)}}>
             <div className='post__username'>
-              <strong>{username}</strong>
+              <strong>{username}</strong> || {newDate}
             </div>
             <div className='post__title'>
               <h4>{title}</h4>

@@ -42,14 +42,14 @@ const CreatePost = ({setPosts}) => {
           validationSchema={validationSchema}
         >
             <Form className='createPost__form__container'>
-              <ErrorMessage name="title" component="span" />
               <Field autoComplete="off" id="title" name="title" placeholder="Title" />
+              <ErrorMessage name="title" component="div" className='error-message'/>
 
-              <ErrorMessage name="body" component="span" />
               <Field autoComplete="off" id="body" name="body" placeholder="Your text here..." />
+              <ErrorMessage name="body" component="div" className='error-message'/>
 
-              <ErrorMessage name="username" component="span" />
               <Field autoComplete="off" id="username" name="username" placeholder="Username" />
+              <ErrorMessage name="username" component="div" className='error-message' />
 
               <div className='form__footer'>
                 <button className='button is-pulled-left is-light' type="reset">Cancel</button>
