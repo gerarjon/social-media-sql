@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
-import axios from 'axios';
+import API from '../utils/API';
 
 const CreateComment = ({setComments, id}) => {
   const initialValues = {
@@ -12,14 +12,15 @@ const CreateComment = ({setComments, id}) => {
     commentBody: Yup.string().max(120).required(),
   })
 
-  const onSubmit = (data, { resetForm }) => {
-    const comment = {...data, PostId: id}
-    axios
-      .post("/api/comments", comment)
-      .then((res) => {
-			  setComments((prevState) => [comment, ...prevState])
-        resetForm();
-      })
+  const onSubmit = async (data, { resetForm }) => {
+    try {
+      const comment = {...data, PostId: id}
+      const result = await API.createComment(comment);
+      setComments((prevState) => [result.data, ...prevState])
+      resetForm();
+    } catch (err) {
+      throw err;
+    }
   }
 
   return (

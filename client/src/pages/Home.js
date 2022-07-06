@@ -1,7 +1,7 @@
-import axios from 'axios';
 import React from 'react';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import API from '../utils/API';
 import CreatePost from '../modules/CreatePost';
 import SinglePost from '../modules/SinglePost';
 
@@ -11,9 +11,15 @@ const Home = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`/api/posts`).then((res) => {
-			setPosts(res.data);
-    })
+    const getAllPosts = async () =>{
+      try {
+        const { data } = await API.getPosts();
+        setPosts(data);
+      } catch (err) {
+        throw err;
+      }
+    }
+    getAllPosts();
   },[])
 
   return (

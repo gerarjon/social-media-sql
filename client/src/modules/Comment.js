@@ -1,8 +1,18 @@
 import React from 'react';
+import API from '../utils/API';
 
-const Comment = ({commentBody}) => {
+const Comment = ({commentBody, id, setComments, comments}) => {
+  const onDeleteComment = async () => {
+    try {
+      const result = await API.deleteComment(id)
+      setComments(comments.filter((comment) => comment.id !== id))
+    } catch (err) {
+      throw err
+    }
+  }
+
   return (
-    <article className='comment__container media'>
+    <article className='comment__container media' id={id}>
       <figure className='media-left'>
         <p className='image is-64x64'>
           <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
@@ -14,6 +24,10 @@ const Comment = ({commentBody}) => {
           <div className='comment__body'>
             <p>{commentBody}</p>
           </div>
+        </div>
+
+        <div className="delete__container">
+          <button onClick={onDeleteComment} className="delete"></button>
         </div>
       </div>
     </article>

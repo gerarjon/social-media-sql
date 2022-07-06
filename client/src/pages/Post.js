@@ -1,8 +1,8 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import Comment from '../modules/Comment';
 import CreateComment from '../modules/CreateComment';
+import API from '../utils/API';
 
 
 const Post = () => {
@@ -11,13 +11,25 @@ const Post = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    axios.get(`/api/posts/byId/${id}`).then((res) => {
-			setPostData(res.data)
-    })
-    axios.get(`/api/comments/${id}`).then((res) => {
-			setComments(res.data)
-    })
-  },[])
+    const getPost = async () => {
+      try {
+        const result = await API.getPost(id);
+        setPostData(result.data)
+      } catch (err) {
+        throw err
+      }
+    }
+    const getComments = async () => {
+      try {
+        const result = await API.getComments(id);
+        setComments(result.data)
+      } catch (err) {
+        throw err
+      }
+    }
+    getPost();
+    getComments();
+  },[id])
 
   return (
     <div className='container'>
@@ -51,6 +63,8 @@ const Post = () => {
             {comments.map((comment,key) => {
               return (
                 <Comment 
+                  comments={comments}
+                  setComments={setComments}
                   id={comment.id}
                   commentBody={comment.commentBody}
                   key={key}

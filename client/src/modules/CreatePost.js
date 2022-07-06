@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
-import axios from 'axios';
+import API from '../utils/API';
 
 const CreatePost = ({setPosts}) => {
 
@@ -18,11 +18,14 @@ const CreatePost = ({setPosts}) => {
     username: Yup.string().min(3).max(15).required()
   })
 
-  const onSubmit = (data, { resetForm }) => {
-    axios.post("/api/posts", data).then((res) => {
-			setPosts((prevState) => [data, ...prevState])
+  const onSubmit = async (data, { resetForm }) => {
+    try {
+      const results = await API.createPost(data)
+      setPosts((prevData) => [results.data, ...prevData]);
       resetForm();
-    })
+    } catch (err) {
+      throw err;
+    }
   }
 
   return (

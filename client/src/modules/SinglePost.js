@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
+import API from '../utils/API';
 
 const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
   const [deleteModalActive, setDeleteModalActive] = useState(false);
@@ -10,14 +11,15 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts}) => {
     setIdDelete(id)
   }
 
-  const onDelete = () => {
-    axios
-      .delete(`/api/posts/delete/${idDelete}`)
-      .then((res) => {
-        setPosts(posts.filter((post) => post.id !== idDelete))
-        setIdDelete(null)
-        setDeleteModalActive(!deleteModalActive)
-      })
+  const onDelete = async () => {
+   try {
+    const result = await API.deletePost(idDelete);
+    setPosts(posts.filter((post) => post.id !== idDelete))
+    setIdDelete(null)
+    setDeleteModalActive(!deleteModalActive)
+   } catch (err) {
+    throw err;
+   }
   }
 
   return (
