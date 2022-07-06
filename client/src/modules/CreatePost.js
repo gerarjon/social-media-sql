@@ -9,7 +9,7 @@ const CreatePost = ({setPosts}) => {
   const initialValues = {
     title: "",
     body: "",
-    username: ""
+    username: "",
   }
 
   const validationSchema = Yup.object().shape({
@@ -27,7 +27,7 @@ const CreatePost = ({setPosts}) => {
       throw err;
     }
   }
-
+  
   return (
     <article className='createPost__container media'>
       <figure className='media-left'>
@@ -52,7 +52,7 @@ const CreatePost = ({setPosts}) => {
               <Field autoComplete="off" id="username" name="username" placeholder="Username" />
 
               <div className='form__footer'>
-                <button className='button is-pulled-left is-light'>Cancel</button>
+                <button className='button is-pulled-left is-light' type="reset">Cancel</button>
                 <button className="button is-pulled-right is-info" type="submit">Submit</button>
               </div>
             </Form>
