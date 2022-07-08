@@ -3,15 +3,27 @@ module.exports = (sequelize, DataTypes) => {
 		commentBody: {
 			type: DataTypes.STRING,
 			allowNull: false,
-		}
+		},
+    username: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
 	})
   
   Comments.associate = (models) => {
+    Comments.belongsTo(models.User, {
+      foreignKey: {
+        allowNull: false
+      }
+    })
     Comments.belongsTo(models.Posts, {
       foreignKey: {
         allowNull: false
-      },
-      onDelete: 'cascade'
+      }
+    }),
+    Comments.hasMany(models.Likes, {
+      onDelete: 'cascade',
+      hooks: true
     })
   }
 
