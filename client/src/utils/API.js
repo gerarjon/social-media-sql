@@ -21,7 +21,14 @@ const API = {
   },
   getComments: (id) => {
     return axios.get(`/api/comments/${id}`);
+  },
+  signup: (data) => {
+    return axios.post(`/api/user/signup`, data)
+  },
+  login: (data) => {
+    return axios.post(`/api/user/login`, data)
   }
+
 }
 
 export default API;

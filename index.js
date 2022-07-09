@@ -22,11 +22,13 @@ const db = require('./models');
 app.use(express.static(path.join(__dirname, './client/build')));
 
 db.sequelize.sync()
-  .then(()=>{
-    app.listen(PORT, () => {
-      console.log(`Listening on ${PORT}.`)
-    })
-  })
-  .catch( err => {
-    console.log(err)
-  })
+  .then(()=> 
+    {
+      app.listen(PORT, () => {
+        console.log(`Listening on ${PORT}.`)
+      })
+    }
+  )
+  .catch( err => 
+    { console.log(err) }
+  )

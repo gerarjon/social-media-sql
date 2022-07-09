@@ -31,9 +31,15 @@ const Navbar = ({isActive, isActiveHandle}) => {
 
         {/* Navbar End */}
         <div className="navbar-end">
-          <NavLink className="navbar-item" to="/">
+          <Link className='navbar-item' to="/login">
+            Login
+          </Link>
+          <Link className='navbar-item' to="/signup">
+            Sign Up
+          </Link>
+          <Link className='navbar-item' to="/user/:id">
             Profile
-          </NavLink>
+          </Link>
         </div>
       </div>
     </nav>

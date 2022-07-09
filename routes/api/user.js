@@ -32,7 +32,7 @@ router.post('/login', async (req, res) => {
     }
     res.json("Logged in")
   } catch (err) {
-    throw err;
+    console.log(err)
   }
 
 })
