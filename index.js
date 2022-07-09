@@ -21,8 +21,12 @@ const db = require('./models');
 // Default behavior: send every unmatched route request to the React app (in production)
 app.use(express.static(path.join(__dirname, './client/build')));
 
-db.sequelize.sync().then(()=>{
-  app.listen(PORT, () => {
-    console.log(`Listening on ${PORT}.`)
+db.sequelize.sync()
+  .then(()=>{
+    app.listen(PORT, () => {
+      console.log(`Listening on ${PORT}.`)
+    })
   })
-})
+  .catch( err => {
+    console.log(err)
+  })
