@@ -1,7 +1,7 @@
 import React from 'react';
 import API from '../utils/API';
 
-const Comment = ({commentBody, id, setComments, comments}) => {
+const Comment = ({commentBody, id, setComments, comments, username}) => {
   const onDeleteComment = async () => {
     try {
       const result = await API.deleteComment(id)
@@ -20,7 +20,9 @@ const Comment = ({commentBody, id, setComments, comments}) => {
       </figure>
       <div className='comment__content media-content' >
         <div className='content'>
-         
+          <div className='post__username'>
+            <strong>{username}</strong>
+          </div>
           <div className='comment__body'>
             <p>{commentBody}</p>
           </div>

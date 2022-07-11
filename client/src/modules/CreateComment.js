@@ -9,16 +9,21 @@ const CreateComment = ({setComments, id}) => {
   }
 
   const validationSchema = Yup.object().shape({
-    commentBody: Yup.string().max(120).required(),
+    commentBody: Yup.string().min(1).max(120).required(),
   })
 
   const onSubmit = async (data, { resetForm }) => {
     try {
+      
       const comment = {...data, PostId: id}
       const result = await API.createComment(comment);
+      if(result.data.error) {
+        throw new Error(result.data.error.message)
+      }
       setComments((prevState) => [result.data, ...prevState])
       resetForm();
     } catch (err) {
+      console.log(err)
       throw err;
     }
   }

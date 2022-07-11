@@ -1,4 +1,5 @@
 const express = require('express');
+const { validateToken } = require('../../middleware/is-auth');
 const router = express.Router();
 const { Posts } = require('../../models');
 
@@ -32,9 +33,11 @@ router.delete('/delete/:id', async (req, res) => {
   }
 });
 
-router.post('/', async (req, res) => {
+router.post('/', validateToken, async (req, res) => {
   try {
     const post = req.body
+    post.UserId = req.user.id
+    console.log(post)
     const newPost = await Posts.create(post);
     res.json(newPost)
   } catch(err) {

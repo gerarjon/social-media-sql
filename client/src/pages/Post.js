@@ -63,6 +63,7 @@ const Post = () => {
             {comments.map((comment,key) => {
               return (
                 <Comment 
+                  username={comment.username}
                   comments={comments}
                   setComments={setComments}
                   id={comment.id}

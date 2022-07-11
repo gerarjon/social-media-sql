@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import {NavLink} from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import * as Yup from 'yup';
 import API from '../utils/API';
+import { AuthContext } from '../context/auth-context';
 
 const SignUp = () => {
 
@@ -11,6 +12,9 @@ const SignUp = () => {
     username: "",
     password: ""
   }
+
+  const context = useContext(AuthContext)
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     name: Yup.string().required(),
@@ -21,7 +25,14 @@ const SignUp = () => {
   const onSubmit = async (data) => {
     try {
       const results = await API.signup(data)
-      console.log(results.data)
+      if(results.data.error) {
+        throw new Error(results.data.error)
+      } else {
+        const login = await API.login(data)
+        localStorage.setItem("accessToken", login.data.token)
+        context.handleLogin(login.data.name, login.data.username, login.data.UserId)
+        navigate('/');
+      }
     } catch (err) {
       throw err;
     }

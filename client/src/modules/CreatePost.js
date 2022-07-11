@@ -20,7 +20,11 @@ const CreatePost = ({setPosts}) => {
 
   const onSubmit = async (data, { resetForm }) => {
     try {
+      console.log(data)
       const results = await API.createPost(data)
+      if(results.data.error) {
+        throw new Error(results.data.error.message)
+      }
       setPosts((prevData) => [results.data, ...prevData]);
       resetForm();
     } catch (err) {

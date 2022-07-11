@@ -8,13 +8,23 @@ const API = {
     return axios.get(`/api/posts/byId/${id}`)
   },
   createPost: (data) => {
-    return axios.post("/api/posts", data)
+    return axios.post("/api/posts", data, 
+    { 
+      headers: {
+        accessToken: localStorage.getItem('accessToken')
+      }
+    })
   },
   deletePost: (id) => {
     return axios.delete(`/api/posts/delete/${id}`)
   },
   createComment: (data) => {
-    return axios.post("/api/comments", data)
+    return axios.post("/api/comments", data,
+    { 
+      headers: {
+        accessToken: localStorage.getItem('accessToken')
+      }
+    })
   },
   deleteComment: (id) => {
     return axios.delete(`/api/comments/delete/${id}`)

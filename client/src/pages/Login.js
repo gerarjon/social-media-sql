@@ -1,14 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
-import {NavLink} from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import API from '../utils/API';
+import { AuthContext } from '../context/auth-context';
 
 const Login = () => {
   const initialValues = {
     username: "",
     password: ""
   }
+
+  const context = useContext(AuthContext)
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     username: Yup.string().min(3).max(15).required(),
@@ -18,7 +22,12 @@ const Login = () => {
   const onSubmit = async (data) => {
     try {
       const results = await API.login(data)
-      console.log(results.data)
+      if(results.data.error) {
+        throw new Error(results.data.error)
+      }
+      localStorage.setItem("accessToken", results.data.token)
+      context.handleLogin(results.data.name, results.data.username, results.data.UserId)
+      navigate('/');
     } catch (err) {
       throw err;
     }
