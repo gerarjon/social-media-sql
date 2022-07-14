@@ -10,6 +10,13 @@
   background-color: rgb(255, 225, 230);
 }
 
+.error__page {
+  text-align: center;
+  font-size: 4rem;
+  color:#fff;
+  -webkit-text-stroke: 1px #000;
+}
+
 main {
   margin-top: 10vh;
 }

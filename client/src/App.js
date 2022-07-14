@@ -8,6 +8,7 @@ import 'bulma/css/bulma.min.css';
 import Navbar from './modules/Navbar';
 import SignUp from './pages/SignUp';
 import Login from './pages/Login';
+import ErrorPage from './pages/ErrorPage';
 import { AuthContext } from './context/auth-context'
 import axios from 'axios';
 
@@ -82,6 +83,7 @@ function App() {
 					<Route path='/login' element={authState.UserId ? <Navigate replace to ='/' /> : <Login />} />
 					<Route path='/signup' element={authState.UserId ? <Navigate replace to ='/' /> : <SignUp />}/>
 					{/* <Route path='/user/:id' element={<User />} /> */}
+					<Route path='*' element={<ErrorPage />} />
 				</Routes>
 			</main>
 		</AuthContext.Provider>
