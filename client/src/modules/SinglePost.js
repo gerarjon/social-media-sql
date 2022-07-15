@@ -57,8 +57,8 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date}
               <p className="modal-card-title">Do you want to delete this post?</p>
             </header>
             <footer className="modal-card-foot">
-              <button onClick={onDelete} className="button is-success">Delete</button>
               <button onClick={onDeleteModalHandler} className="button">Cancel</button>
+              <button onClick={onDelete} className="button is-success">Delete</button>
             </footer>
           </div>
         </div> 
