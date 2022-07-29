@@ -36,7 +36,7 @@ router.post('/login', async (req, res) => {
       { username: user.username, id: user.id, name: user.name }, 
       'somesupersecretkey',
     )
-    res.json({token: token, username: user.username, name: user.name, id: user.id})
+    res.json({token: token, username: user.username, name: user.name, UserId: user.id})
   } catch (err) {
     console.log(err)
   }

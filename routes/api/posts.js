@@ -1,11 +1,16 @@
 const express = require('express');
 const { validateToken } = require('../../middleware/is-auth');
 const router = express.Router();
-const { Posts } = require('../../models');
+const { Posts, Likes } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
-    const getAllPosts = await Posts.findAll({order: [['updatedAt', 'DESC']]});
+    const getAllPosts = await Posts.findAll(
+      {
+        order: [['updatedAt', 'DESC']],
+        include: [Likes]
+      }
+    );
     res.json(getAllPosts);
   } catch(err) {
     throw err

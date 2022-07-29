@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import {Link, NavLink, useNavigate} from 'react-router-dom';
+import {Link, NavLink} from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
 
 const Navbar = ({isActive, isActiveHandle}) => {
@@ -10,7 +10,7 @@ const Navbar = ({isActive, isActiveHandle}) => {
       <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
         <div className="navbar-brand">
           <Link className="navbar-item" to="/">
-            Doggo
+            SMS
           </Link>
 
           {/* navbar burger */}

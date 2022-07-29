@@ -32,6 +32,7 @@ const Home = () => {
           posts.map((post)=> {
             return (
               <SinglePost
+                likes={post.Likes}
                 date={post.updatedAt}
                 key={post.id}
                 id={post.id}

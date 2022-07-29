@@ -11,6 +11,12 @@ import Login from './pages/Login';
 import ErrorPage from './pages/ErrorPage';
 import { AuthContext } from './context/auth-context'
 import axios from 'axios';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
+
+library.add(fab, faHeart, farHeart)
 
 function App() {
 	const [isActive, setIsActive] = useState(false)
@@ -55,7 +61,7 @@ function App() {
 	}, []);
 
 	useEffect(() => {
-		console.log(authState.name, `updated`)
+		console.log(authState, `updated`)
 	}, [authState])
 
 	const isActiveHandle = () => {

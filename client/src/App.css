@@ -66,6 +66,7 @@ main {
 }
 
 .post__content {
+  width: 100%;
   border: 1px solid rgb(210, 210, 210);
   border-radius: 2px;
   padding: 2px 10px;
@@ -73,6 +74,17 @@ main {
   justify-content: space-between;
   background-color: #FFF;
   cursor: pointer;
+}
+
+.heart__icon {
+  background-color: transparent;
+  cursor: pointer;
+  border: none;
+  color: rgb(243, 56, 56);
+}
+
+.icon__after:hover .icon__before:before {
+  content: "\f004";
 }
 
 .post__content > .content {
