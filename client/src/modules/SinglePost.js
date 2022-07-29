@@ -78,7 +78,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date,
 
             <nav className="level is-mobile">
               <div className='level-left'>
-                <label>{likes.length}</label>
+                <label>{likes ? likes.length : '0'}</label>
                 <button className='level-item heart__icon' onClick={() => {likePostHandler(id)}}>
                   <span className='icon icon__before'><FontAwesomeIcon icon={['far', 'heart']} size='lg' /></span>
                 </button>

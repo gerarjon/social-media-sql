@@ -22,10 +22,12 @@ const CreatePost = ({setPosts}) => {
     try {
       console.log(data)
       const results = await API.createPost(data)
+      const returnedResult = results.data;
+      const createdPost = {...returnedResult, Likes: []}
       if(results.data.error) {
         throw new Error(results.data.error.message)
       }
-      setPosts((prevData) => [results.data, ...prevData]);
+      setPosts((prevData) => [createdPost, ...prevData]);
       resetForm();
     } catch (err) {
       throw err;
