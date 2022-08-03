@@ -43,8 +43,11 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
           <div className="modal-background" onClick={onDeleteCommentModal}></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title">Do you want to delete this comment?</p>
+              <p className="modal-card-title">Delete Comment</p>
             </header>
+            <section className='modal-card-body' >
+              <p>Are you sure you want to delete this comment?</p>
+            </section>
             <footer className="modal-card-foot">
               <button onClick={onDeleteCommentModal} className="button">Cancel</button>
               <button onClick={onDeleteComment} className="button is-success">Delete</button>

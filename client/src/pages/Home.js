@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import API from '../utils/API';
 import CreatePost from '../modules/CreatePost';
+import CreatePostModule from '../modules/CreatePostModule';
 import SinglePost from '../modules/SinglePost';
 
 
@@ -25,7 +26,7 @@ const Home = () => {
   return (
     <div className='container'>
       <div className='postList__container'>
-        <CreatePost 
+        <CreatePostModule 
           setPosts={setPosts}
         />
         {

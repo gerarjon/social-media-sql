@@ -101,6 +101,49 @@ main {
 
 /* create post */
 
+.createPost__handler {
+  margin: 0 auto;
+  display: flex;
+}
+
+.createPost__handler > figure:after {
+  content: '';
+  display: inline-block;
+  transform: translate(70px, -60px);
+  width: 0;
+  height: 0;
+  border-right: 15px solid #fff;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent; 
+}
+
+.createPost__handler__container {
+  cursor: pointer;
+  border: 1px solid rgb(210, 210, 210);
+  width: 100%;
+  border-radius: 2px;
+  background-color: #fff;
+  margin-bottom: 2rem;
+  padding: 1.5rem 1rem;
+}
+
+.createPost__handler__button {
+  cursor: pointer;
+  border: 1px solid rgb(154, 154, 154);
+  border-radius: 50px;
+  background-color: #fff;
+  padding: 1rem;
+  width: 100%;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+.createPost__handler__button:hover {
+  transition: 0.3s ease-in-out;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.56); 
+}
+
 .createPost__content {
   border: 1px solid rgb(210, 210, 210);
   border-radius: 2px;
