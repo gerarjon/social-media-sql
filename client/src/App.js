@@ -60,10 +60,6 @@ function App() {
 		})
 	}, []);
 
-	useEffect(() => {
-		console.log(authState, `updated`)
-	}, [authState])
-
 	const isActiveHandle = () => {
 		setIsActive(!isActive)
 	}
