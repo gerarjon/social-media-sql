@@ -38,7 +38,7 @@ const Navbar = ({isActive, isActiveHandle}) => {
               context.UserId ? 
               <>
                 <Link className='navbar-item' to="/user/:id">
-                {context.username} 
+                {context.name} 
                 </Link>
                 <button onClick={context.handleLogout}>Log Out</button>
               </> 
