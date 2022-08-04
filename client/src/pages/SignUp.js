@@ -27,15 +27,14 @@ const SignUp = () => {
       const results = await API.signup(data)
       if(results.data.error) {
         throw new Error(results.data.error)
-      } else {
-        const login = await API.login(data)
-        if(login.data.error) {
-          throw new Error(results.data.error)
-        }
-        localStorage.setItem("accessToken", login.data.token)
-        context.handleLogin(login.data.name, login.data.username, login.data.UserId)
-        navigate('/');
       }
+      const login = await API.login(data)
+      if(login.data.error) {
+        throw new Error(results.data.error)
+      }
+      localStorage.setItem("accessToken", login.data.token)
+      context.handleLogin(login.data.name, login.data.username, login.data.UserId)
+      navigate('/');
     } catch (err) {
       throw err;
     }

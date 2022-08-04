@@ -1,7 +1,7 @@
 const express = require('express');
 const { validateToken } = require('../../middleware/is-auth');
 const router = express.Router();
-const { Posts, Likes } = require('../../models');
+const { Posts, Likes, Comments } = require('../../models');
 
 router.get('/', async (req, res) => {
   try {
@@ -11,11 +11,6 @@ router.get('/', async (req, res) => {
         include: [Likes]
       }
     );
-    // const likedPosts = await Likes.findAll(
-    //   {
-    //     where: { UserId: req.user.id }
-    //   }
-    // )
     res.json(getAllPosts);
   } catch(err) {
     throw err
@@ -35,8 +30,9 @@ router.get('/byId/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
   try {
     const id = req.params.id;
+    const deleteComments = await Comments.destroy({ where: {PostId : id}})
     const deletedPost = await Posts.destroy({ where: { id: id } })
-    console.log(deletedPost)
+    console.log(deletedPost, deleteComments)
     res.json(deletedPost)
   } catch(err) {
     throw err

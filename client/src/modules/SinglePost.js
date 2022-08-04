@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
 const SinglePost = ({post, posts, setPosts}) => {
-  const {id, updatedAt, username, title, body, Likes} = post;
+  const {id, updatedAt, username, title, body, Likes, UserId} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
   const newDate = new Date(updatedAt).toDateString()
@@ -22,6 +22,9 @@ const SinglePost = ({post, posts, setPosts}) => {
   const onDelete = async () => {
    try {
     const result = await API.deletePost(idDelete);
+    if (result.data.error) {
+      return console.log(result.data.error)
+    }
     setPosts(posts.filter((post) => post.id !== idDelete))
     setIdDelete(null)
     setDeleteModalActive(!deleteModalActive)
@@ -90,7 +93,7 @@ const SinglePost = ({post, posts, setPosts}) => {
           </div>
 
           <div className="delete__container">
-            <button onClick={() => onDeleteModalHandler(id)} className="delete"></button>
+            {context.UserId === UserId && <button onClick={() => onDeleteModalHandler(id)}className="delete"></button> }
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Navbar = ({isActive, isActiveHandle}) => {
   const [activeDropdown, setActiveDropdown] = useState(false)
@@ -44,10 +45,11 @@ const Navbar = ({isActive, isActiveHandle}) => {
                   <div className='navbar-link'>
                     {context.name} 
                   </div>
-                  <div className='navbar-dropdown'>
+                  <div className='navbar-dropdown is-right'>
                     <Link 
                       className='navbar-item' 
                       to="/user/:id">
+                      <span className='icon'><FontAwesomeIcon icon="fa-solid fa-user" /></span>
                       Profile
                     </Link>
                     <hr className='navbar-divider' />
@@ -55,6 +57,7 @@ const Navbar = ({isActive, isActiveHandle}) => {
                       className='navbar-item'
                       onClick={context.handleLogout}
                       to="/">
+                        <span className='icon'><FontAwesomeIcon icon="fa-solid fa-right-from-bracket" /></span>
                       Log Out
                     </Link>
                   </div>

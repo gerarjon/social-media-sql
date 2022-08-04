@@ -22,7 +22,6 @@ const CreatePost = ({setPosts, isOpenHandler}) => {
 
   const onSubmit = async (data, { resetForm }) => {
     try {
-      console.log(data)
       const results = await API.createPost(data)
       const returnedResult = results.data;
       const createdPost = {...returnedResult, Likes: []}

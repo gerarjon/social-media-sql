@@ -13,10 +13,10 @@ import { AuthContext } from './context/auth-context'
 import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import { faHeart, faUser, faRightFromBracket } from '@fortawesome/free-solid-svg-icons'
 import { faHeart as farHeart } from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, faHeart, farHeart)
+library.add(fab, faHeart, farHeart, faUser, faRightFromBracket)
 
 function App() {
 	const [isActive, setIsActive] = useState(false)
