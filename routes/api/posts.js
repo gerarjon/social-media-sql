@@ -8,7 +8,10 @@ router.get('/', async (req, res) => {
     const getAllPosts = await Posts.findAll(
       {
         order: [['updatedAt', 'DESC']],
-        include: [Likes]
+        include: [
+          Likes,
+          Comments
+        ]
       }
     );
     res.json(getAllPosts);

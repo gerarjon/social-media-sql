@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
 const SinglePost = ({post, posts, setPosts}) => {
-  const {id, updatedAt, username, title, body, Likes, UserId} = post;
+  const {id, updatedAt, username, title, body, Likes, UserId, Comments} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
   const newDate = new Date(updatedAt).toDateString()
@@ -84,16 +84,18 @@ const SinglePost = ({post, posts, setPosts}) => {
 
             <nav className="level is-mobile">
               <div className='level-left'>
-                <label>{Likes ? Likes.length : '0'}</label>
-                <button className='level-item heart__icon' onClick={() => {likePostHandler(id)}}>
+                <button className='heart__icon' onClick={() => {likePostHandler(id)}}>
                   <span className='icon icon__before'><FontAwesomeIcon icon={['far', 'heart']} size='lg' /></span>
                 </button>
+                <label className='level-item'>{Likes && Likes.length}</label>
+                <span className='icon'><FontAwesomeIcon icon="fa-regular fa-comment" /></span>
+                <label className='level-item'>{Comments && Comments.length}</label>
               </div>
             </nav>
           </div>
 
           <div className="delete__container">
-            {context.UserId === UserId && <button onClick={() => onDeleteModalHandler(id)}className="delete"></button> }
+            {context.UserId === UserId && <span className='delete-icon' onClick={() => onDeleteModalHandler(id)}><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span> }
           </div>
         </div>
 
@@ -102,8 +104,11 @@ const SinglePost = ({post, posts, setPosts}) => {
           <div className="modal-background" onClick={onDeleteModalHandler}></div>
           <div className="modal-card">
             <header className="modal-card-head">
-              <p className="modal-card-title">Do you want to delete this post?</p>
+              <p className="modal-card-title">Delete Post</p>
             </header>
+            <section className='modal-card-body'>
+              <p>Are you sure you want to delete this post?</p>
+            </section>
             <footer className="modal-card-foot">
               <button onClick={onDeleteModalHandler} className="button">Cancel</button>
               <button onClick={onDelete} className="button is-success">Delete</button>

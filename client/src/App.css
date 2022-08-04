@@ -21,6 +21,18 @@ main {
   margin-top: 10vh;
 }
 
+.modal-card-foot {
+  justify-content: space-between !important;
+}
+
+.delete-icon {
+  cursor: pointer;
+}
+
+.delete-icon:hover {
+  filter: brightness(150%);
+}
+
 /* Auth Page */
 .signup__form__container {
   width: 30rem;

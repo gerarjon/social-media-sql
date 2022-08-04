@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import API from '../utils/API';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Comment = ({commentBody, id, setComments, comments, username}) => {
   const [deleteCommentActive, setDeleteCommentActive] = useState(false)
@@ -36,7 +37,7 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
         </div>
 
         <div className="delete__container">
-          <button onClick={onDeleteCommentModal} className="delete"></button>
+          <span onClick={onDeleteCommentModal} className="delete-icon"><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span>
         </div>
 
         <div className={`modal ${deleteCommentActive ? "is-active" : ""}`} >
@@ -49,8 +50,8 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
               <p>Are you sure you want to delete this comment?</p>
             </section>
             <footer className="modal-card-foot">
-              <button onClick={onDeleteCommentModal} className="button">Cancel</button>
-              <button onClick={onDeleteComment} className="button is-success">Delete</button>
+              <button onClick={onDeleteCommentModal} className="button is-pulled-left">Cancel</button>
+              <button onClick={onDeleteComment} className="button is-success is-pulled-right">Delete</button>
             </footer>
           </div>
         </div>
