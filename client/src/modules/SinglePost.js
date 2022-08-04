@@ -87,7 +87,7 @@ const SinglePost = ({post, posts, setPosts}) => {
           <div className='media-content'>
             <div className='content' onClick={()=>{navigate(`/post/${id}`)}}>
               <div className='post__username'>
-                <strong>{username}</strong> · {newDate}
+                <strong>{username}</strong> · {newDate} {updatedAt !== createdAt && `(updated)`}
               </div>
               <div className='post__title'>
                 <h4>{title}</h4>
