@@ -11,6 +11,11 @@ router.get('/', async (req, res) => {
         include: [Likes]
       }
     );
+    // const likedPosts = await Likes.findAll(
+    //   {
+    //     where: { UserId: req.user.id }
+    //   }
+    // )
     res.json(getAllPosts);
   } catch(err) {
     throw err

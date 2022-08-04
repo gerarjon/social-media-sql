@@ -1,15 +1,18 @@
 import React, { useState, useContext } from 'react';
 import API from '../utils/API';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 
-const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date, likes}) => {
+const SinglePost = ({post, posts, setPosts}) => {
+  const {id, updatedAt, username, title, body, Likes} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
-  const newDate = new Date(date).toDateString()
+  const newDate = new Date(updatedAt).toDateString()
 
   const context = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const onDeleteModalHandler = (id) => {
     setDeleteModalActive(!deleteModalActive)
@@ -66,7 +69,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date,
           <div className='media-content'>
             <div className='content' onClick={()=>{navigate(`/post/${id}`)}}>
               <div className='post__username'>
-                <strong>{username}</strong> || {newDate}
+                <strong>{username}</strong> · {newDate}
               </div>
               <div className='post__title'>
                 <h4>{title}</h4>
@@ -78,7 +81,7 @@ const SinglePost = ({id, username, title, body, navigate, setPosts, posts, date,
 
             <nav className="level is-mobile">
               <div className='level-left'>
-                <label>{likes ? likes.length : '0'}</label>
+                <label>{Likes ? Likes.length : '0'}</label>
                 <button className='level-item heart__icon' onClick={() => {likePostHandler(id)}}>
                   <span className='icon icon__before'><FontAwesomeIcon icon={['far', 'heart']} size='lg' /></span>
                 </button>
