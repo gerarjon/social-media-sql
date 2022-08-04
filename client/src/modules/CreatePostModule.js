@@ -25,7 +25,7 @@ const CreatePostModule = ({setPosts}) => {
           </figure>
           :
           <figure className='media-left'>
-            <p className='image is-64x64'>
+            <p className='image is-48x48'>
               <img alt="profile" src="https://media.istockphoto.com/vectors/profile-picture-vector-illustration-vector-id587805156?k=20&m=587805156&s=612x612&w=0&h=Ok_jDFC5J1NgH20plEgbQZ46XheiAF8sVUKPvocne6Y=" />
             </p>
           </figure>

@@ -15,6 +15,14 @@ const API = {
       }
     })
   },
+  updatePost: (data, id) => {
+    return axios.put(`/api/posts/update/${id}`, data, 
+    {
+      headers: {
+        accessToken: localStorage.getItem('accessToken')
+      }
+    })
+  },
   deletePost: (id) => {
     return axios.delete(`/api/posts/delete/${id}`)
   },

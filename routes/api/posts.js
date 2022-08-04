@@ -30,6 +30,27 @@ router.get('/byId/:id', async (req, res) => {
   }
 })
 
+router.put('/update/:id', validateToken, async (req, res) => {
+  try {
+    const post = req.body
+    const id = req.params.id;
+    const updatedPost = await Posts.update(
+      {
+        title: post.title,
+        body: post.body
+      },
+      {
+        where: {
+          id: id
+        }
+      }
+    )
+    res.json(updatedPost)
+  } catch (err) {
+    throw err
+  }
+})
+
 router.delete('/delete/:id', async (req, res) => {
   try {
     const id = req.params.id;

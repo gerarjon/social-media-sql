@@ -3,20 +3,35 @@ import API from '../utils/API';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import UpdatePost from './UpdatePost';
 import axios from 'axios';
 
 const SinglePost = ({post, posts, setPosts}) => {
-  const {id, updatedAt, username, title, body, Likes, UserId, Comments} = post;
+  const {id, updatedAt, createdAt, username, title, body, Likes, UserId, Comments} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
+  const [updateModalActive, setUpdateModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
-  const newDate = new Date(updatedAt).toDateString()
 
   const context = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const setDate = () => {
+    if (createdAt !== updatedAt) {
+      return updatedAt;
+    } else {
+      return createdAt;
+    }
+  }
+
+  const newDate = new Date(setDate()).toDateString()
+
   const onDeleteModalHandler = (id) => {
     setDeleteModalActive(!deleteModalActive)
     setIdDelete(id)
+  }
+
+  const onUpdateModalHandler = () => {
+    setUpdateModalActive(!updateModalActive);
   }
 
   const onDelete = async () => {
@@ -89,13 +104,18 @@ const SinglePost = ({post, posts, setPosts}) => {
                 </button>
                 <label className='level-item'>{Likes && Likes.length}</label>
                 <span className='icon'><FontAwesomeIcon icon="fa-regular fa-comment" /></span>
-                <label className='level-item'>{Comments && Comments.length}</label>
+                <label className='level-item'>{Comments ? Comments.length : 0}</label>
               </div>
             </nav>
           </div>
 
           <div className="delete__container">
-            {context.UserId === UserId && <span className='delete-icon' onClick={() => onDeleteModalHandler(id)}><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span> }
+            {context.UserId === UserId &&
+              <>
+                <span className='delete-icon' onClick={onUpdateModalHandler}><FontAwesomeIcon icon="fa-solid fa-pen" /> </span>
+                <span className='delete-icon' onClick={() => onDeleteModalHandler(id)}><FontAwesomeIcon icon="fa-regular fa-trash-can" /> </span> 
+              </>
+            } 
           </div>
         </div>
 
@@ -115,6 +135,22 @@ const SinglePost = ({post, posts, setPosts}) => {
             </footer>
           </div>
         </div> 
+
+        {updateModalActive && 
+          <div className={`modal is-active`}>
+            <div className="modal-background" onClick={onUpdateModalHandler}></div>
+            <UpdatePost
+              title={title}
+              body={body}
+              id={id}
+              posts={posts}
+              setPosts={setPosts}
+              isOpenHandler={onUpdateModalHandler}
+            />
+          </div>
+        }
+
+        
       </article>
         
     </>

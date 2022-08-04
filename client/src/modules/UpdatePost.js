@@ -4,31 +4,36 @@ import * as Yup from 'yup';
 import API from '../utils/API';
 import { AuthContext } from '../context/auth-context';
 
-const CreatePost = ({setPosts, isOpenHandler}) => {
+const UpdatePost = ({setPosts, isOpenHandler, title, body, id, posts}) => {
 
   const context = useContext(AuthContext)
 
   const initialValues = {
-    title: "",
-    body: "",
-    username: context.username,
+    title: title,
+    body: body,
   }
 
   const validationSchema = Yup.object().shape({
     title: Yup.string().max(50).required(),
     body: Yup.string().max(120).required(),
-    username: Yup.string().min(3).max(15).required()
   })
 
   const onSubmit = async (data, { resetForm }) => {
     try {
-      const results = await API.createPost(data)
-      const returnedResult = results.data;
-      const createdPost = {...returnedResult, Likes: []}
+      if (data.title === title && data.body === body) {
+        return isOpenHandler();
+      }
+      const results = await API.updatePost(data, id)
       if(results.data.error) {
         throw new Error(results.data.error.message)
       }
-      setPosts((prevData) => [createdPost, ...prevData]);
+      const updatedPost = posts.map(post => {
+        if (post.id === id) {
+          return {...post, title: data.title, body: data.body}
+        }
+        return post
+      })
+      setPosts(updatedPost);
       isOpenHandler();
       resetForm();
     } catch (err) {
@@ -59,7 +64,7 @@ const CreatePost = ({setPosts, isOpenHandler}) => {
 
                 <div className='form__footer'>
                   <button className='button is-pulled-left is-light' type="reset" onClick={isOpenHandler}>Cancel</button>
-                  <button className="button is-pulled-right is-info" type="submit">Submit</button>
+                  <button className="button is-pulled-right is-info" type="submit">Update</button>
                 </div>
               </Form>
           </Formik>
@@ -69,4 +74,4 @@ const CreatePost = ({setPosts, isOpenHandler}) => {
   )
 }
 
-export default CreatePost;
+export default UpdatePost;
