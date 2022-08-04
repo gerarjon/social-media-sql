@@ -83,12 +83,21 @@ const SinglePost = ({post, posts, setPosts}) => {
         </figure>
         
         <div className='post__content'>
-
           <div className='media-content'>
             <div className='content' onClick={()=>{navigate(`/post/${id}`)}}>
-              <div className='post__username'>
-                <strong>{username}</strong> · {newDate} {updatedAt !== createdAt && `(updated)`}
-              </div>
+              <header className='post__header'>
+                <div className='post__username'>
+                  <strong>{username}</strong> · {newDate} {updatedAt !== createdAt && `(updated)`}
+                </div>
+                <div className="util__container">
+                  {context.UserId === UserId &&
+                    <>
+                      <span className='delete-icon' onClick={onUpdateModalHandler}><FontAwesomeIcon icon="fa-solid fa-pen" /> </span>
+                      <span className='delete-icon' onClick={() => onDeleteModalHandler(id)}><FontAwesomeIcon icon="fa-regular fa-trash-can" /> </span> 
+                    </>
+                  } 
+                </div>
+              </header>
               <div className='post__title'>
                 <h4>{title}</h4>
               </div>
@@ -107,15 +116,6 @@ const SinglePost = ({post, posts, setPosts}) => {
                 <label className='level-item'>{Comments ? Comments.length : 0}</label>
               </div>
             </nav>
-          </div>
-
-          <div className="delete__container">
-            {context.UserId === UserId &&
-              <>
-                <span className='delete-icon' onClick={onUpdateModalHandler}><FontAwesomeIcon icon="fa-solid fa-pen" /> </span>
-                <span className='delete-icon' onClick={() => onDeleteModalHandler(id)}><FontAwesomeIcon icon="fa-regular fa-trash-can" /> </span> 
-              </>
-            } 
           </div>
         </div>
 

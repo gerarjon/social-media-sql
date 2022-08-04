@@ -28,17 +28,19 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
       </figure>
       <div className='comment__content media-content' >
         <div className='content'>
-          <div className='post__username'>
-            <strong>{username}</strong>
-          </div>
+          <header className='comment__header'>
+            <div className='post__username'>
+              <strong>{username}</strong>
+            </div>
+            <div className="util__container">
+              <span onClick={onDeleteCommentModal} className="delete-icon"><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span>
+            </div>
+          </header>
           <div className='comment__body'>
             <p>{commentBody}</p>
           </div>
         </div>
 
-        <div className="delete__container">
-          <span onClick={onDeleteCommentModal} className="delete-icon"><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span>
-        </div>
 
         <div className={`modal ${deleteCommentActive ? "is-active" : ""}`} >
           <div className="modal-background" onClick={onDeleteCommentModal}></div>
