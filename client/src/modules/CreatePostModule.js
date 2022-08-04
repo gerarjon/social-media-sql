@@ -19,7 +19,7 @@ const CreatePostModule = ({setPosts}) => {
         {
           context.UserId ?
           <figure className='media-left'>
-            <p className='image is-64x64'>
+            <p className='image is-48x48'>
               <img alt="profile" src="https://media.istockphoto.com/vectors/male-silhouette-avatar-default-avatar-profile-picture-photo-vector-id1062562340?k=20&m=1062562340&s=612x612&w=0&h=fxd0ulmCLoER4M8rP8mwG9SChmn46zKjMXkZeEZhYiI=" />
             </p>
           </figure>

@@ -62,7 +62,7 @@ const SinglePost = ({post, posts, setPosts}) => {
     <>
       <article className='post__container media' id={id}>
         <figure className='media-left'>
-          <p className='image is-64x64'>
+          <p className='image is-48x48'>
             <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
           </p>
         </figure>

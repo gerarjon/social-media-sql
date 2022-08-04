@@ -69,14 +69,18 @@ main {
 
 .postList__container {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 760px;
   margin-top: 10vh;
 }
 
 .postList__container > .media + .media {
   border: none;
+  padding-top: 0!important;
 }
 
+.postList__container > .media + .media:last-child {
+  margin-bottom: 1rem;
+} 
 .post__content {
   width: 100%;
   border: 1px solid rgb(210, 210, 210);
@@ -121,12 +125,12 @@ main {
 .createPost__handler > figure:after {
   content: '';
   display: inline-block;
-  transform: translate(70px, -60px);
+  transform: translate(53px, -40px);
   width: 0;
   height: 0;
-  border-right: 15px solid #fff;
-  border-top: 12px solid transparent;
-  border-bottom: 12px solid transparent; 
+  border-right: 12px solid #fff;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent; 
 }
 
 .createPost__handler__container {
@@ -183,7 +187,7 @@ main {
 
 .postPage__container {
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 760px;
   margin-top: 10vh;
 }
 
