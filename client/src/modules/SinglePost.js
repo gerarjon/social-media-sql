@@ -84,9 +84,9 @@ const SinglePost = ({post, posts, setPosts}) => {
         
         <div className='post__content'>
           <div className='media-content'>
-            <div className='content' onClick={()=>{navigate(`/post/${id}`)}}>
+            <div className='content'>
               <header className='post__header'>
-                <div className='post__username'>
+                <div className='post__username' onClick={()=>{navigate(`/post/${id}`)}}>
                   <strong>{username}</strong> · {newDate} {updatedAt !== createdAt && `(updated)`}
                 </div>
                 <div className="util__container">
@@ -98,10 +98,10 @@ const SinglePost = ({post, posts, setPosts}) => {
                   } 
                 </div>
               </header>
-              <div className='post__title'>
+              <div className='post__title' onClick={()=>{navigate(`/post/${id}`)}}>
                 <h4>{title}</h4>
               </div>
-              <div className='post__body'>
+              <div className='post__body' onClick={()=>{navigate(`/post/${id}`)}}>
                 <p>{body}</p>
               </div>
             </div>
