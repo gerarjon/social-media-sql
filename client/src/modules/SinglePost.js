@@ -76,7 +76,7 @@ const SinglePost = ({post, posts, setPosts}) => {
   return (
     <>
       <article className='post__container media' id={id}>
-        <figure className='media-left'>
+        <figure className='media-left post__profile__pic' onClick={()=>{navigate(`/user/${UserId}`)}}>
           <p className='image is-48x48'>
             <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
           </p>

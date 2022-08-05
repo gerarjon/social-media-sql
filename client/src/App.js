@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Route, Routes, Navigate} from 'react-router-dom'
 import Home from './pages/Home'
 import Post from './pages/Post'
-// import Profile from './pages/Profile'
+import Profile from './pages/Profile'
 import 'bulma/css/bulma.min.css';
 import Navbar from './modules/Navbar';
 import SignUp from './pages/SignUp';
@@ -84,7 +84,7 @@ function App() {
 					<Route path='/post/:id' element={<Post />} />
 					<Route path='/login' element={authState.UserId ? <Navigate replace to ='/' /> : <Login />} />
 					<Route path='/signup' element={authState.UserId ? <Navigate replace to ='/' /> : <SignUp />}/>
-					{/* <Route path='/user/:id' element={<User />} /> */}
+					<Route path='/user/:id' element={<Profile />} />
 					<Route path='*' element={<ErrorPage />} />
 				</Routes>
 			</main>

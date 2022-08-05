@@ -48,7 +48,7 @@ const Navbar = ({isActive, isActiveHandle}) => {
                   <div className='navbar-dropdown is-right'>
                     <Link 
                       className='navbar-item' 
-                      to="/user/:id">
+                      to={`/user/${context.UserId}`}>
                       <span className='icon'><FontAwesomeIcon icon="fa-solid fa-user" /></span>
                       Profile
                     </Link>

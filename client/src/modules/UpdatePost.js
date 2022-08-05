@@ -1,12 +1,9 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import API from '../utils/API';
-import { AuthContext } from '../context/auth-context';
 
 const UpdatePost = ({setPosts, isOpenHandler, title, body, id, posts}) => {
-
-  const context = useContext(AuthContext)
 
   const initialValues = {
     title: title,

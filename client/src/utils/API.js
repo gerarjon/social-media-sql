@@ -50,8 +50,16 @@ const API = {
   },
   login: (data) => {
     return axios.post(`/api/user/login`, data)
+  },
+  getUser: (id) => {
+    return axios.get(`/api/user/${id}`);
+  },
+  getUserPosts: (id) => {
+    return axios.get(`/api/user/${id}/posts`);
+  },
+  getUserComments: (id) => {
+    return axios.get(`/api/user/${id}/comments`);
   }
-
 }
 
 export default API;
