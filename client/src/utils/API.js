@@ -35,7 +35,12 @@ const API = {
     })
   },
   deleteComment: (id) => {
-    return axios.delete(`/api/comments/delete/${id}`)
+    return axios.delete(`/api/comments/delete/${id}`,
+    { 
+      headers: {
+        accessToken: localStorage.getItem('accessToken')
+      }
+    })
   },
   getComments: (id) => {
     return axios.get(`/api/comments/${id}`);

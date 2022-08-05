@@ -1,9 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import API from '../utils/API';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { AuthContext } from '../context/auth-context';
 
-const Comment = ({commentBody, id, setComments, comments, username}) => {
+const Comment = ({setComments, comments, comment, commentCountHandler}) => {
+  const { commentBody, UserId, username, id, updatedAt, createdAt } = comment;
   const [deleteCommentActive, setDeleteCommentActive] = useState(false)
+
+  const context = useContext(AuthContext);
+
+  const setDate = () => {
+    if (createdAt !== updatedAt) {
+      return updatedAt;
+    } else {
+      return createdAt;
+    }
+  }
+
+  const newDate = new Date(setDate()).toDateString()
 
   const onDeleteCommentModal = () => {
     setDeleteCommentActive(!deleteCommentActive)
@@ -14,6 +28,7 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
       const result = await API.deleteComment(id)
       setComments(comments.filter((comment) => comment.id !== id))
       setDeleteCommentActive(!deleteCommentActive)
+      commentCountHandler('deleteComment')
     } catch (err) {
       throw err
     }
@@ -30,10 +45,13 @@ const Comment = ({commentBody, id, setComments, comments, username}) => {
         <div className='content'>
           <header className='comment__header'>
             <div className='post__username'>
-              <strong>{username}</strong>
+              <strong>{username}</strong> · {newDate} {updatedAt !== createdAt && `(updated)`}
             </div>
             <div className="util__container">
-              <span onClick={onDeleteCommentModal} className="delete-icon"><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span>
+              {
+                UserId == context.UserId &&
+                <span onClick={onDeleteCommentModal} className="delete-icon"><FontAwesomeIcon icon="fa-regular fa-trash-can" /></span>
+              }
             </div>
           </header>
           <div className='comment__body'>

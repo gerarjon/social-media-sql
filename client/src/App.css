@@ -211,6 +211,12 @@ main {
   font-size: 1.2rem;
 }
 
+.postPage__footer > p {
+  border-bottom: 1px solid rgba(219,219,219,.5);
+  padding: 0.7rem 0;
+  margin-bottom: 0.7rem!important;
+}
+
 .comment__content {
   padding: 2px 10px;
 }

@@ -23,7 +23,12 @@ router.get('/', async (req, res) => {
 router.get('/byId/:id', async (req, res) => {
   try {
     const id = req.params.id;
-    const post = await Posts.findByPk(id);
+    const post = await Posts.findByPk(id, {
+      include: [
+        Likes, 
+        Comments
+      ]
+    });
     res.json(post);
   } catch(err) {
     throw err

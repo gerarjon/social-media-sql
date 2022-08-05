@@ -112,7 +112,7 @@ const SinglePost = ({post, posts, setPosts}) => {
                   <span className='icon icon__before'><FontAwesomeIcon icon={['far', 'heart']} size='lg' /></span>
                 </button>
                 <label className='level-item'>{Likes && Likes.length}</label>
-                <span className='icon'><FontAwesomeIcon icon="fa-regular fa-comment" /></span>
+                <span className='icon' onClick={()=>{navigate(`/post/${id}`)}}><FontAwesomeIcon icon="fa-regular fa-comment" /></span>
                 <label className='level-item'>{Comments ? Comments.length : 0}</label>
               </div>
             </nav>

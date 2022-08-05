@@ -3,12 +3,22 @@ import { useParams } from 'react-router-dom'
 import Comment from '../modules/Comment';
 import CreateComment from '../modules/CreateComment';
 import API from '../utils/API';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Post = () => {
   const [postData, setPostData] = useState({})
   const [comments, setComments] = useState([])
   let { id } = useParams();
+
+  const setDate = () => {
+    if (postData.createdAt !== postData.updatedAt) {
+      return postData.updatedAt;
+    } else {
+      return postData.createdAt;
+    }
+  }
+
+  const newDate = new Date(setDate()).toDateString()
 
   useEffect(() => {
     const getPost = async () => {
@@ -31,6 +41,20 @@ const Post = () => {
     getComments();
   },[id])
 
+  const commentCountHandler = (param) => {
+    if (param === 'addComment') {
+      setPostData((postData) => {
+        return {...postData, Comments: [...postData.Comments, 'comment']};
+      })
+    } else {
+      const commentsArray = postData.Comments;
+      commentsArray.pop();
+      setPostData((postData) => {
+        return {...postData, Comments: commentsArray }
+      })
+    }
+  }
+
   return (
     <div className='container'>
       <article className='postPage__container media' id={postData.id}>
@@ -52,23 +76,36 @@ const Post = () => {
             <div className='postPage__body'>
               <p>{postData.body}</p>
             </div>
+            <div className='postPage__footer'>
+              <p>{newDate}</p>
+              <nav className="level is-mobile">
+                <div className='level-left'>
+                  <button className='heart__icon'>
+                    <span className='icon icon__before'><FontAwesomeIcon icon={['far', 'heart']} size='lg' /></span>
+                  </button>
+                  <label className='level-item'>{postData.Likes && postData.Likes.length}</label>
+                  <span className='icon'><FontAwesomeIcon icon="fa-regular fa-comment" /></span>
+                  <label className='level-item'>{postData.Comments ? postData.Comments.length : 0}</label>
+                </div>
+              </nav>
+            </div>
           </div>
 
           <div className='comments__container'>
             <CreateComment 
               id={id}
               setComments={setComments}
+              commentCountHandler={commentCountHandler}
             />
 
             {comments.map((comment,key) => {
               return (
                 <Comment 
-                  username={comment.username}
+                  comment={comment}
                   comments={comments}
                   setComments={setComments}
-                  id={comment.id}
-                  commentBody={comment.commentBody}
                   key={key}
+                  commentCountHandler={commentCountHandler}
                 />
               )
             })}

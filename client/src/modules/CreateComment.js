@@ -3,7 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import API from '../utils/API';
 
-const CreateComment = ({setComments, id}) => {
+const CreateComment = ({setComments, id, commentCountHandler}) => {
   const initialValues = {
     commentBody: "",
   }
@@ -20,7 +20,8 @@ const CreateComment = ({setComments, id}) => {
       if(result.data.error) {
         throw new Error(result.data.error.message)
       }
-      setComments((prevState) => [result.data, ...prevState])
+      setComments((prevState) => [result.data, ...prevState]);
+      commentCountHandler('addComment');
       resetForm();
     } catch (err) {
       console.log(err)
