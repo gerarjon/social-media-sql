@@ -5,6 +5,8 @@ import CreateComment from '../modules/CreateComment';
 import API from '../utils/API';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+const stockImage = "https://bulma.io/images/placeholders/128x128.png";
+
 const Post = () => {
   const [postData, setPostData] = useState({})
   const [comments, setComments] = useState([])
@@ -62,8 +64,13 @@ const Post = () => {
           <div className='content'>
             <div className='postPage__header'>
               <figure>
-                <p className='image is-64x64'>
-                  <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
+                <p 
+                  className='image is-64x64 post__profile__pic'
+                  style={{width: '64px', height: '64px'}} 
+                >
+                  <img alt="profile" 
+                    style={{objectFit: 'cover', height: '100%'}} 
+                    src={postData.profileUrl? `${postData.profileUrl}` : stockImage } />
                 </p>
               </figure>
               <div className='postPage__username'>

@@ -7,12 +7,17 @@ const { validateToken } = require('../../middleware/is-auth');
 
 router.post('/signup', async (req, res) => {
   const { name, username, password } = req.body;
+  const user = await User.findOne({ where: { username: username }});
+  if (user) {
+    return res.json({error:"User already exists"})
+  }
   bcrypt.hash(password, 10)
     .then((hash) => {
       User.create({
         name: name,
         username: username,
         password: hash,
+        profileUrl: "",
       })
       res.json("User created")
     }
@@ -33,10 +38,16 @@ router.post('/login', async (req, res) => {
       throw new Error("Wrong Username or Password")
     }
     const token = sign(
-      { username: user.username, id: user.id, name: user.name }, 
+      { username: user.username, id: user.id, name: user.name, profileUrl: user.profileUrl }, 
       'somesupersecretkey',
     )
-    res.json({token: token, username: user.username, name: user.name, UserId: user.id})
+    res.json({
+      token: token, 
+      username: user.username, 
+      name: user.name, 
+      UserId: user.id, 
+      profileUrl: user.profileUrl
+    })
   } catch (err) {
     console.log(err)
   }

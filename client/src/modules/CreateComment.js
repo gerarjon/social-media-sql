@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup';
 import API from '../utils/API';
+import { AuthContext } from '../context/auth-context';
+
+const stockImage = "https://media.istockphoto.com/vectors/male-silhouette-avatar-default-avatar-profile-picture-photo-vector-id1062562340?k=20&m=1062562340&s=612x612&w=0&h=fxd0ulmCLoER4M8rP8mwG9SChmn46zKjMXkZeEZhYiI=";
 
 const CreateComment = ({setComments, id, commentCountHandler}) => {
   const initialValues = {
     commentBody: "",
   }
+
+  const context = useContext(AuthContext);
 
   const validationSchema = Yup.object().shape({
     commentBody: Yup.string().min(1).max(120).required(),
@@ -32,8 +37,12 @@ const CreateComment = ({setComments, id, commentCountHandler}) => {
   return (
     <article className='createComment__container media'>
       <figure className='media-left'>
-        <p className='image is-64x64'>
-          <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
+        <p className='image is-64x64 post__profile__pic'>
+          <img 
+            alt="profile" 
+            style={{objectFit: 'cover', height: '100%'}}
+            src={ context.profileUrl ? `${context.profileUrl}` : stockImage} 
+            />
         </p>
       </figure>
       <div className='createComment__content media-content'>

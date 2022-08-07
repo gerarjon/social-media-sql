@@ -81,6 +81,14 @@ main {
 .postList__container > .media + .media:last-child, .profileList__container > .media + .media {
   margin-bottom: 1rem;
 } 
+
+.post__profile__pic {
+  cursor: pointer;
+  border: 2px solid rgb(210, 210, 210);
+  border-radius: 5px;
+  overflow: hidden; 
+}
+
 .post__content {
   width: 100%;
   border: 1px solid rgb(210, 210, 210);
@@ -112,10 +120,6 @@ main {
 
 .post__title h1, h2, h3, h4, h5, h6 {
   margin: 0.5em 0!important;
-}
-
-.post__profile__pic {
-  cursor: pointer;
 }
 
 /* create post */

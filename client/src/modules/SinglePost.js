@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import API from '../utils/API';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
@@ -6,14 +6,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import UpdatePost from './UpdatePost';
 import axios from 'axios';
 
+const stockImage = "https://bulma.io/images/placeholders/128x128.png";
+
 const SinglePost = ({post, posts, setPosts}) => {
-  const {id, updatedAt, createdAt, username, title, body, Likes, UserId, Comments} = post;
+  const {id, updatedAt, createdAt, username, title, body, Likes, UserId, Comments, profileUrl} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
 
   const context = useContext(AuthContext);
   const navigate = useNavigate();
+
+  
 
   const setDate = () => {
     if (createdAt !== updatedAt) {
@@ -73,13 +77,16 @@ const SinglePost = ({post, posts, setPosts}) => {
   }
 
 
-  return (
+  return (    
     <>
       <article className='post__container media' id={id}>
-        <figure className='media-left post__profile__pic' onClick={()=>{navigate(`/user/${UserId}`)}}>
-          <p className='image is-48x48'>
-            <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
-          </p>
+        <figure className='media-left' onClick={()=>{navigate(`/user/${UserId}`)}}>
+          <div 
+            className='image is-48x48 post__profile__pic'
+            style={{width: '48px', height: '48px'}} 
+          >
+            <img alt="profile" style={{objectFit: 'cover', height: '100%'}} src={profileUrl ? `${profileUrl}` : stockImage} />
+          </div>
         </figure>
         
         <div className='post__content'>

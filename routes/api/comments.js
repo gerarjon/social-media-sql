@@ -18,6 +18,7 @@ router.post('/', validateToken, async (req, res) => {
     const comment = req.body;
     comment.username = req.user.username;
     comment.UserId = req.user.id;
+    comment.profileUrl = req.user.profileUrl;
     console.log(req.user)
     const result = await Comments.create(comment);
     res.json(result)

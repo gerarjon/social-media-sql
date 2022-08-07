@@ -70,8 +70,9 @@ router.delete('/delete/:id', async (req, res) => {
 
 router.post('/', validateToken, async (req, res) => {
   try {
-    const post = req.body
-    post.UserId = req.user.id
+    const post = req.body;
+    post.UserId = req.user.id;
+    post.profileUrl = req.user.profileUrl;
     console.log(post)
     const newPost = await Posts.create(post);
     res.json(newPost)

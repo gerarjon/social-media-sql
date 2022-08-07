@@ -23,15 +23,16 @@ function App() {
 	const [authState, setAuthState] = useState({
 		name: null,
 		username: null,
-		UserId: null
+		UserId: null,
+		profileUrl: null
 	})
 
-	const handleLogin = (name, username, UserId) => {
-		setAuthState({name: name, username: username, UserId:UserId});
+	const handleLogin = (name, username, UserId, profileUrl) => {
+		setAuthState({name: name, username: username, UserId:UserId, profileUrl: profileUrl});
 	}
 
 	const handleLogout = () => {
-		setAuthState({name:null , username:null, UserId: null})
+		setAuthState({name:null , username:null, UserId: null, profileUrl: null})
 		localStorage.removeItem('accessToken')
 	}
 
@@ -48,13 +49,15 @@ function App() {
 				setAuthState({
 					name: null,
 					username: null,
-					UserId: null
+					UserId: null,
+					profileUrl: null
 				})
 			} else {
 				setAuthState({
 					name: res.data.name,
 					username: res.data.username,
-					UserId: res.data.id
+					UserId: res.data.id,
+					profileUrl: res.data.profileUrl
 				})
 			}
 		})
@@ -70,6 +73,7 @@ function App() {
 				name: authState.name, 
 				username: authState.username, 
 				UserId: authState.UserId, 
+				profileUrl: authState.profileUrl,
 				handleLogin: handleLogin,
 				handleLogout: handleLogout
 			}}

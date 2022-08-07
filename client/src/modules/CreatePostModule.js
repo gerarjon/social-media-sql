@@ -3,6 +3,9 @@ import { AuthContext } from '../context/auth-context';
 import { useNavigate } from 'react-router-dom';
 import CreatePost from './CreatePost';
 
+const stockImage1 = "https://media.istockphoto.com/vectors/male-silhouette-avatar-default-avatar-profile-picture-photo-vector-id1062562340?k=20&m=1062562340&s=612x612&w=0&h=fxd0ulmCLoER4M8rP8mwG9SChmn46zKjMXkZeEZhYiI=";
+const stockImage2 = "https://media.istockphoto.com/vectors/profile-picture-vector-illustration-vector-id587805156?k=20&m=587805156&s=612x612&w=0&h=Ok_jDFC5J1NgH20plEgbQZ46XheiAF8sVUKPvocne6Y=";
+
 const CreatePostModule = ({setPosts}) => {
   const [isOpen, setIsOpen] = useState(false);
 
@@ -16,20 +19,24 @@ const CreatePostModule = ({setPosts}) => {
   return (
     <>
       <div className='createPost__handler'>
-        {
-          context.UserId ?
-          <figure className='media-left'>
-            <p className='image is-48x48'>
-              <img alt="profile" src="https://media.istockphoto.com/vectors/male-silhouette-avatar-default-avatar-profile-picture-photo-vector-id1062562340?k=20&m=1062562340&s=612x612&w=0&h=fxd0ulmCLoER4M8rP8mwG9SChmn46zKjMXkZeEZhYiI=" />
-            </p>
-          </figure>
-          :
-          <figure className='media-left'>
-            <p className='image is-48x48'>
-              <img alt="profile" src="https://media.istockphoto.com/vectors/profile-picture-vector-illustration-vector-id587805156?k=20&m=587805156&s=612x612&w=0&h=Ok_jDFC5J1NgH20plEgbQZ46XheiAF8sVUKPvocne6Y=" />
-            </p>
-          </figure>
-        }
+        <figure className='media-left'>
+          <p className='image is-48x48 post__profile__pic' >
+            {
+              context.UserId ?
+              <img 
+                alt="profile" 
+                style={{objectFit: 'cover', height: '100%'}}
+                src={ context.profileUrl ? `${context.profileUrl}` : stockImage1} 
+              />
+              :
+              <img 
+              alt="profile" 
+              style={{objectFit: 'cover', height: '100%'}}
+              src={ stockImage2 } 
+            />
+            }
+          </p>
+        </figure>
         <div className='createPost__handler__container' onClick={isOpenHandler}>
           <button className='createPost__handler__button'>Start a Post</button>
         </div>

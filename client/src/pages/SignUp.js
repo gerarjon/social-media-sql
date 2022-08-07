@@ -33,7 +33,7 @@ const SignUp = () => {
         throw new Error(results.data.error)
       }
       localStorage.setItem("accessToken", login.data.token)
-      context.handleLogin(login.data.name, login.data.username, login.data.UserId)
+      context.handleLogin(login.data.name, login.data.username, login.data.UserId, login.data.profileUrl)
       navigate('/');
     } catch (err) {
       throw err;

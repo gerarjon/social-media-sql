@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [6]
       }
+		},
+		profileUrl: {
+			type: DataTypes.TEXT,
 		}
 	})
 

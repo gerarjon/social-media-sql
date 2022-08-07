@@ -26,7 +26,7 @@ const Login = () => {
         throw new Error(results.data.error)
       }
       localStorage.setItem("accessToken", results.data.token)
-      context.handleLogin(results.data.name, results.data.username, results.data.UserId)
+      context.handleLogin(results.data.name, results.data.username, results.data.UserId, results.data.profileUrl)
       navigate('/');
     } catch (err) {
       throw err;

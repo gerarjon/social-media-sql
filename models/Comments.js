@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
     username: {
       type: DataTypes.STRING,
       allowNull: false
-    }
+    },
+    profileUrl: {
+			type: DataTypes.TEXT,
+		}
 	})
   
   Comments.associate = (models) => {

@@ -3,8 +3,10 @@ import API from '../utils/API';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { AuthContext } from '../context/auth-context';
 
+const stockImage ="https://bulma.io/images/placeholders/128x128.png";
+
 const Comment = ({setComments, comments, comment, commentCountHandler}) => {
-  const { commentBody, UserId, username, id, updatedAt, createdAt } = comment;
+  const { commentBody, UserId, username, id, updatedAt, createdAt, profileUrl } = comment;
   const [deleteCommentActive, setDeleteCommentActive] = useState(false)
 
   const context = useContext(AuthContext);
@@ -37,8 +39,13 @@ const Comment = ({setComments, comments, comment, commentCountHandler}) => {
   return (
     <article className='comment__container media' id={id}>
       <figure className='media-left'>
-        <p className='image is-64x64'>
-          <img alt="profile" src="https://bulma.io/images/placeholders/128x128.png" />
+        <p 
+          className='image is-64x64 post__profile__pic'
+          style={{width: '64px', height: '64px'}} 
+        >
+          <img alt="profile" 
+            style={{objectFit: 'cover', height: '100%'}} 
+            src={profileUrl ? `${profileUrl}` : stockImage } />
         </p>
       </figure>
       <div className='comment__content media-content' >

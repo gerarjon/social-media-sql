@@ -4,6 +4,7 @@ export const AuthContext = createContext({
   name: null,
   username: null,
   UserId: null,
-  handleLogin:(name, username, UserId) => {},
+  profileUrl: null,
+  handleLogin:(name, username, UserId, profileUrl) => {},
   handleLogout: () => {}
 })
