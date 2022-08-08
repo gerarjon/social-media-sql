@@ -14,9 +14,9 @@ import axios from 'axios';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import { faHeart, faUser, faRightFromBracket, faPen} from '@fortawesome/free-solid-svg-icons'
-import { faHeart as farHeart, faComment, faTrashCan,  } from '@fortawesome/free-regular-svg-icons'
+import { faHeart as farHeart, faComment, faTrashCan, faFileImage } from '@fortawesome/free-regular-svg-icons'
 
-library.add(fab, faHeart, farHeart, faUser, faRightFromBracket, faComment, faTrashCan, faPen)
+library.add(fab, faHeart, farHeart, faUser, faRightFromBracket, faComment, faTrashCan, faPen, faFileImage)
 
 function App() {
 	const [isActive, setIsActive] = useState(false)

@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import API from '../utils/API';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/auth-context';
@@ -9,7 +9,7 @@ import axios from 'axios';
 const stockImage = "https://bulma.io/images/placeholders/128x128.png";
 
 const SinglePost = ({post, posts, setPosts}) => {
-  const {id, updatedAt, createdAt, username, title, body, Likes, UserId, Comments, profileUrl} = post;
+  const {id, updatedAt, createdAt, username, title, body, Likes, UserId, Comments, profileUrl, imgUrl} = post;
   const [deleteModalActive, setDeleteModalActive] = useState(false);
   const [updateModalActive, setUpdateModalActive] = useState(false);
   const [idDelete, setIdDelete] = useState(null);
@@ -111,6 +111,12 @@ const SinglePost = ({post, posts, setPosts}) => {
               <div className='post__body' onClick={()=>{navigate(`/post/${id}`)}}>
                 <p>{body}</p>
               </div>
+              {
+                imgUrl &&
+                <div className='post__image' onClick={()=>{navigate(`/post/${id}`)}}>
+                  <img alt="post image" src={imgUrl} />
+                </div>
+              }
             </div>
 
             <nav className="level is-mobile">

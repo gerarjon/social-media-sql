@@ -103,6 +103,18 @@ main {
   justify-content: space-between;
 }
 
+.post__image {
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 5px;
+}
+
+.post__image > img {
+  object-fit: contain;
+  max-height: 400px;
+  border-radius: 10px;
+}
+
 .heart__icon {
   background-color: transparent;
   cursor: pointer;

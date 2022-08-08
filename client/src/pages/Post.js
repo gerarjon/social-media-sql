@@ -78,11 +78,17 @@ const Post = () => {
               </div>
             </div>
             <div className='postPage__title'>
-              <h1>{postData.title}</h1>
+              <h3>{postData.title}</h3>
             </div>
             <div className='postPage__body'>
               <p>{postData.body}</p>
             </div>
+            {
+                postData.imgUrl &&
+                <div className='post__image' >
+                  <img alt="post image" src={postData.imgUrl} />
+                </div>
+              }
             <div className='postPage__footer'>
               <p>{newDate}</p>
               <nav className="level is-mobile">
